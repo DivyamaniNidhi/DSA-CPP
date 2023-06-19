@@ -12,6 +12,14 @@ class Node {
         this -> data = data;
         this -> next = NULL;
     }
+
+    //destructor
+    ~Node(){
+        if(this -> next != NULL){
+            delete next;
+            this -> next = NULL;
+        }
+    }
 };
 
 //********************************   INSERT AT START OF LINKED LIST    *************************************//
@@ -58,6 +66,36 @@ void insertAtPosition(Node* &tail, Node* &head, int pos, int data){
     temp -> next = NodeToInsert;
 }
 
+//*********************************************   DELETE A NODE  *******************************************//
+void deleteNode(int position, Node* &head, Node* &tail){
+    //delete first node
+    if(position == 1){
+        Node* temp = head;
+        head = head -> next;
+        //free memory
+        temp -> next = NULL;
+        delete temp;
+    }
+    else{ //delete any middle or last position 
+        Node *curr = head;
+        Node *prev = NULL;
+
+        int count = 1;
+        while(count < position){
+            prev = curr;
+            curr = curr -> next;
+            count++;
+        }
+        
+        prev -> next = curr -> next;
+        if(prev -> next == NULL){
+            tail = prev;
+        }
+        curr -> next = NULL;
+        delete curr;
+    }
+}
+
 //**************************************   TRAVERSE THE LINKED LIST    *************************************//
 void print(Node* &head){
     Node* temp = head;
@@ -92,4 +130,17 @@ int main(){
     insertAtPosition(tail, head, 3, 30);
     print(head); //15 12 30 10 20
 
+    deleteNode(2, head, tail);
+    print(head); //15 30 10 20
+
+    deleteNode(4, head, tail);
+    print(head); //15 30 10
+
+
+    deleteNode(1, head, tail);
+    print(head); //30 10
+
+    cout<<"head : "<<head->data;
+    cout<<endl;
+    cout<<"tail : "<<tail->data;
 }
