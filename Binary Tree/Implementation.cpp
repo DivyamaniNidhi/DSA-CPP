@@ -65,7 +65,7 @@ void levelOrderTraversal(node* root){ //BFS(bredth-first search)
     }
 }
 
-// INORDER TRAVERSAL ------------------------------------------------------//
+// INORDER TRAVERSAL (Left, Node, Right) ------------------------------------------------------//
 
 void inorderTraversal(node* root){
     if(root == NULL){
@@ -77,7 +77,7 @@ void inorderTraversal(node* root){
     inorderTraversal(root->right);
 }
 
-// PREORDER TRAVESRSAL ------------------------------------------------------//
+// PREORDER TRAVESRSAL (Node, Left, Right)  ------------------------------------------------------//
 
 void preorderTraversal(node* root){
     if(root == NULL){
@@ -89,7 +89,7 @@ void preorderTraversal(node* root){
     preorderTraversal(root->right);
 }
 
-// POSTORDER TRAVERSAL ------------------------------------------------------//
+// POSTORDER TRAVERSAL (Left, Right, Node) ------------------------------------------------------//
 
 void postorderTraversal(node* root){
     if(root == NULL){
