@@ -11,7 +11,7 @@ class Solution {
         inorderTraversal(root->right, in);
     }
     
-    void inorderToMinHeap(Node* root, vector<int> in, int &i) {
+    void inorderToMinHeap(Node*& root, vector<int> in, int &i) {
         if(root == NULL)
             return;
         
