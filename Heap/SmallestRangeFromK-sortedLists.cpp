@@ -44,6 +44,8 @@ public:
         int k = nums.size();
 
         priority_queue<node*, vector<node*>, compare> minHeap;
+
+        // push 1st element of each row in minHeap and find min and max
         for(int i = 0; i < k; i++) {
             int ele = nums[i][0];
             maxi = max(maxi, ele);
@@ -51,24 +53,28 @@ public:
             minHeap.push(new node(ele, i, 0));
         }
 
+        //initial range
         int start = mini, end = maxi;
 
+        //process ranges
         while(!minHeap.empty()) {
             node* temp = minHeap.top();
             minHeap.pop();
 
+            //next col exists
             if(temp->col + 1 < nums[temp->row].size()) {
                 minHeap.push(new node(nums[temp->row][temp->col + 1], temp->row, temp->col + 1));
 
                 mini = minHeap.top() -> data;
                 maxi = max(maxi, nums[temp->row][temp->col+1]);
 
+                //update range
                 if(maxi - mini < end - start) {
                     start = mini;
                     end = maxi;
                 }
             }
-            else{
+            else{ //next col does not exist
                 break;
             }
         }
